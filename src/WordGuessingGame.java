@@ -7,6 +7,9 @@ public class WordGuessingGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
+        int correctGuessCount = 0; 
+        int incorrectGuessCount = 0; 
+        int totalGuessCount = 0; 
 
         String[] words = {"Aatrox", "Ahri", "Akali", "Akshan", "Alistar", "Amumu", "Anivia", "Annie", "Aphelios", "Ashe",
                 "Aurelion Sol", "Azir", "Bard", "BelVeth", "Blitzcrank", "Brand", "Braum", "Caitlyn", "Camille",
@@ -55,6 +58,8 @@ public class WordGuessingGame {
         int totalScore = startingScore;
 
         System.out.println("League of Legends Şampiyon Tahmin oyununa hoşgeldiniz.");
+        
+        Set<Character> guessedLetters = new HashSet<>(); 
 
         while (!wordGuessed) {
             System.out.println("İpucu: " + selectedHint);
@@ -67,6 +72,12 @@ public class WordGuessingGame {
             }
 
             char guessedLetter = Character.toLowerCase(userInput.charAt(0));
+            
+            if (guessedLetters.contains(guessedLetter)) {
+                System.out.println("Bu harfi zaten tahmin ettiniz. Başka bir harf deneyin.");
+                continue;
+            }
+            
             boolean letterFound = false;
 
             for (int i = 0; i < selectedWord.length(); i++) {
@@ -78,6 +89,8 @@ public class WordGuessingGame {
 
             if (!letterFound) {
                 totalScore -= incorrectGuessPenalty;
+                incorrectGuessCount++; 
+                totalGuessCount++; 
                 System.out.println("Yanlış tahmin! -" + incorrectGuessPenalty + " puan. Toplam puanınız: " + totalScore);
             } else if (String.valueOf(guessedWord).equals(selectedWord.toLowerCase())) {
                 System.out.println("Tebrikler, " + selectedWord + " cevabını buldunuz!");
@@ -85,6 +98,8 @@ public class WordGuessingGame {
                 break;
             } else {
                 System.out.println("Doğru harf tahmin ettiniz, devam edin ve cevabı bulmaya çalışın.");
+                correctGuessCount++; 
+                totalGuessCount++; 
             }
 
             if (totalScore > 0) {
@@ -112,7 +127,12 @@ public class WordGuessingGame {
                     guessedLetter = Character.toLowerCase(userInput.charAt(0));
                     letterFound = false;
 
-                    int correctGuessCount = 0;
+                    if (guessedLetters.contains(guessedLetter)) {//yine aynı kontrol
+                        System.out.println("Bu harfi zaten tahmin ettiniz. Başka bir harf deneyin.");
+                        i--;
+                        remainingAttempts--;
+                        continue;
+                    }
 
                     for (int j = 0; j < selectedWord.length(); j++) {
                         if (Character.toLowerCase(selectedWord.charAt(j)) == guessedLetter) {
@@ -123,6 +143,8 @@ public class WordGuessingGame {
                     }
 
                     if (letterFound) {
+                        correctGuessCount++; 
+                        totalGuessCount++; 
                         System.out.println("Doğru harf tahmin ettiniz, devam edin ve cevabı bulmaya çalışın.");
                         System.out.println("Şampiyon Adı : " + String.valueOf(guessedWord));
 
@@ -132,6 +154,8 @@ public class WordGuessingGame {
                         }
                     } else {
                         remainingAttempts--;
+                        incorrectGuessCount++; 
+                        totalGuessCount++; 
                         System.out.println("Yanlış tahmin! Kalan tahmin hakkınız: " + remainingAttempts);
                         if (remainingAttempts == 0) {
                             System.out.println("Tahmin hakkınız kalmadı. Doğru cevap: " + selectedWord);
@@ -148,5 +172,9 @@ public class WordGuessingGame {
                 }
             }
         }
+        System.out.println("Oyun İstatistikleri:");
+        System.out.println("Toplam Tahmin Sayısı: " + totalGuessCount);
+        System.out.println("Doğru Tahmin Sayısı: " + correctGuessCount);
+        System.out.println("Yanlış Tahmin Sayısı: " + incorrectGuessCount);
     }
 }
