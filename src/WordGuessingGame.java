@@ -45,7 +45,7 @@ public class WordGuessingGame {
                 "Ruh", "Müzik", "Dövüşçü", "Palyaço", "Ninja", "Ejderha", "Zehir", "Ölümsüz", "Bumerang", "Akrep",
                 "Sihir", "İyileştirici", "Kuzgun", "Devrim", "Güç", "Yamyam", "Toprak", "Bıçak", "Yakut", "Mantar",
                 "Zincir", "Bomba", "Troll", "Öfkeli", "Büyücü", "Fare", "Hayvan", "Makine", "Okçu", "Avcı", "Büyücü",
-                "Göz", "Gölge", "Yumruk", "Mahvolmuş", "Dahi", "Kan", "Ayı", "Kurt", "Maymun", "Kuş", "Enerji",
+                "Göz", "Gölge", "Yumruk", "Mahvolmuş", "Dahi", "Kan", "Ayı", "Kurt", "Maymun Kral", "Kuş", "Enerji",
                 "Savaşçı", "Rüzgar", "Kılıç", "Mezar", "Kedi", "Jöle", "Ninja", "Elektrik", "Patlayıcı", "Zaman",
                 "Rüya", "Bitki"};
         String selectedHint = hints[hintNumber];
