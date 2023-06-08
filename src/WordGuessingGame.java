@@ -129,7 +129,7 @@ public class WordGuessingGame {
                     guessedLetter = Character.toLowerCase(userInput.charAt(0));
                     letterFound = false;
 
-                    if (guessedLetters.contains(guessedLetter)) {//yine aynı kontrol
+                    if (guessedLetters.contains(guessedLetter)) {
                         System.out.println("Bu harfi zaten tahmin ettiniz. Başka bir harf deneyin.");
                         i--;
                         remainingAttempts--;
