@@ -59,7 +59,7 @@ public class WordGuessingGame {
         int incorrectGuessPenalty = 10;
         int totalScore = startingScore;
 
-        System.out.println("League of Legends Şampiyon Tahmin oyununa hoşgeldiniz.");
+        System.out.println("League of Legends Şampiyon Tahmin oyununa hoşgeldiniz. ");
         
         Set<Character> guessedLetters = new HashSet<>(); 
 
